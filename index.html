@@ -2,12 +2,45 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>ff</title>
-    <meta name="viewport" content="width=device-width">
+    <title>中毒</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<style>
+		.popup {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 0;
+			color: #000;
+			background: #fff;
+			border: 1px solid #ccc;
+			width: 150px;
+			height: 80px;
+            text-align: center;
+            line-height: 80px;
+		}	
+		.bg-yellow {background: yellow}
+		.bg-red {background: red;}
+		.bg-blue {background: blue;}
+		.bg-green {background: green;}
+	</style>
   </head>
 <body>
-  
-  <h1>黑佬</h1>
-  <script>alert(/micromessenger/.test(window.navigator.userAgent.toLowerCase()))</script>
+  <div class="popup bg-red">哈哈</div>
+
+	<script>
+        setInterval(()=>{
+            let div = document.createElement("div");
+            let bg = ["yellow","red","blue","green"];
+            let bgI = Math.floor(Math.random()*4);
+            let height =  window.screen.availHeight-80;
+            let width = document.body.clientWidth-150;
+            let top = Math.floor(Math.random()*height);
+            let left = Math.floor(Math.random()*width);
+            div.className = `popup bg-${bg[bgI]}`;
+            div.style.cssText = `top:${top}px;left:${left}px`;
+            div.innerText = "哈哈";
+            document.body.append(div);
+        },100)
+	</script>
 </body>
 </html>
