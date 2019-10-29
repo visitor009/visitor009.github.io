@@ -1,46 +1,214 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>中毒</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<style>
-		.popup {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 0;
-			color: #000;
-			background: #fff;
-			border: 1px solid #ccc;
-			width: 150px;
-			height: 80px;
-            text-align: center;
-            line-height: 80px;
-		}	
-		.bg-yellow {background: yellow}
-		.bg-red {background: red;}
-		.bg-blue {background: blue;}
-		.bg-green {background: green;}
-	</style>
-  </head>
-<body>
-  <div class="popup bg-red">哈哈</div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-	<script>
-        setInterval(()=>{
-            let div = document.createElement("div");
-            let bg = ["yellow","red","blue","green"];
-            let bgI = Math.floor(Math.random()*4);
-            let height =  window.screen.availHeight-80;
-            let width = document.body.clientWidth-150;
-            let top = Math.floor(Math.random()*height);
-            let left = Math.floor(Math.random()*width);
-            div.className = `popup bg-${bg[bgI]}`;
-            div.style.cssText = `top:${top}px;left:${left}px`;
-            div.innerText = "哈哈";
-            document.body.append(div);
-        },100)
-	</script>
+   
+    <style>
+    .section6 {
+    background: black;
+    background-size: cover;
+    height: 100vh;
+}
+.section6 .container{
+    /*background: url("../img/1.png") no-repeat;*/
+    background-size: 100%;
+    height: 500px;
+    position: relative;
+}
+.section6 .section-title {color: #fff;}
+.section6 .line {
+    background: #0075FF;
+    height: 1px;
+    transform-origin: left top;
+    position: absolute;
+    width: 0;
+}
+.section6 .line1 {
+    top: 346px;
+    left: 44px;
+    transform: rotate(-21deg);
+    animation: aline1 1s .5s forwards;
+    /*width: 239px;*/
+}
+.section6 .line2 {
+    top: 261px;
+    left: 267px;
+    animation: aline2 1s 1.5s forwards;
+    /*width: 200px;*/
+}
+.section6 .line3 {
+    /*width: 216px;*/
+    top: 261px;
+    left: 466px;
+    transform: rotate(-2deg);
+    animation: aline3 1s 2.5s forwards;
+}
+.section6 .line4 {
+    top: 252px;
+    /*width: 217px;*/
+    left: 681px;
+    transform: rotate(31deg);
+    animation: aline4 1s 3.5s forwards;
+}
+.section6 .line5 {
+    /*width: 240px;*/
+    left: 868px;
+    top: 366px;
+    transform: rotate(-35deg);
+    animation: aline5 1s 4.5s forwards;
+}
+.section6 .line6 {
+    /*width: 227px;*/
+    left: 1064px;
+    top: 230px;
+    transform: rotate(-125deg);
+    animation: aline6 1s 5.5s forwards;
+}
+@keyframes textFadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+@keyframes dshadow {
+    from {box-shadow: none;}
+    to {box-shadow:0 0 10px 5px rgba(0,117,255,1);}
+}
+/*线动画*/
+@keyframes aline1 {
+    from {width: 0;}
+    to {width: 239px;}
+}
+@keyframes aline2 {
+    from {width: 0;}
+    to {width: 200px;}
+}
+@keyframes aline3 {
+    from {width: 0;}
+    to {width: 216px;}
+}
+@keyframes aline4 {
+    from {width: 0;}
+    to {width: 217px;}
+}
+@keyframes aline5 {
+    from {width: 0;}
+    to {width: 240px;}
+}
+@keyframes aline6 {
+    from {width: 0;}
+    to {width: 227px;}
+}
+.section6 .dot {
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle,#cce4ff,#0075FF);
+    border-radius: 50%;
+    /*box-shadow: 0 0 10px 5px rgba(0,117,255,1);*/
+    position: absolute;
+}
+.section6 .dot p {
+    white-space: nowrap;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    color: #0075FF;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+.section6 .dot1 {
+    top: 341px;
+    left: 40px;
+    animation: dshadow 1s forwards;
+}
+.section6 .dot2 {
+    left: 260px;
+    top: 256px;
+    animation: dshadow 1s 1s forwards;
+}
+.section6 .dot3 {
+    left: 460px;
+    top: 256px;
+    animation: dshadow 1s 2s forwards;
+}
+.section6 .dot4 {
+    left: 680px;
+    top: 251px;
+    animation: dshadow 1s 3s forwards;
+}
+.section6 .dot5 {
+    left: 863px;
+    top: 359px;
+    animation: dshadow 1s 4s forwards;
+}
+.section6 .dot6 {
+    right: 101px;
+    top: 224px;
+    animation: dshadow 1s 5s forwards;
+}
+.section6 .dot6 p { left: 280%; }
+.section6 .dot7 {
+    right: 230px;
+    top: 39px;
+    animation: dshadow 1s 6s forwards;
+}
+.section6 .dot7 p {left: -40px; top: -10px;}
+
+.section6 .dot1 p {
+    animation: textFadeIn 1s forwards;
+}
+.section6 .dot2 p {
+    animation: textFadeIn 1s 1s forwards;
+}
+.section6 .dot3 p {
+    animation: textFadeIn 1s 2s forwards;
+}
+.section6 .dot4 p {
+    animation: textFadeIn 1s 3s forwards;
+}
+.section6 .dot5 p {
+    animation: textFadeIn 1s 4s forwards;
+}
+.section6 .dot6 p {
+    animation: textFadeIn 1s 5s forwards;
+}
+.section6 .dot7 p {
+    animation: textFadeIn 1s 6s forwards;
+}
+.container {width: 1170px; margin: 0 auto;padding-top: 120px}
+
+    </style>
+</head>
+<body data-spy="scroll" data-target="#nav">
+
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper" id="swiper-wrapper">
+       
+        <div class="swiper-slide section6">
+            <div class="container">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+                <div class="line line4"></div>
+                <div class="line line5"></div>
+                <div class="line line6"></div>
+                <div class="dot dot1"><p>客户第一<br>Customer first</p></div>
+                <div class="dot dot2"><p>开放<br>Open</p></div>
+                <div class="dot dot3"><p>坦诚<br>Frank and honest</p></div>
+                <div class="dot dot4"><p>高效<br>High efficiency</p></div>
+                <div class="dot dot5"><p>担当<br>Assume</p></div>
+                <div class="dot dot6"><p>持续进化<br>Continuous evolution</p></div>
+                <div class="dot dot7"><p>奋斗<br>struggle</p></div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
 </body>
 </html>
