@@ -1,183 +1,106 @@
 <!DOCTYPE html>
-<html lang="zh">
-
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-    <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
-    <style>
-        * {padding: 0;margin: 0;box-sizing: border-box;}
-        body {
-            color: #333;
-        }
-        li {list-style: none;}
-        .not {
-            color: #ccc;
-        }
-        .now,
-        .date-day > li:hover {
-            background: #e5fdff;
-        }
-        .date-box {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin: 50px auto;
-            padding: 20px;
-            width: 360px;
-        }
-        .date-hd {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0 20px;
-        }
-        .date-week {
-            display: flex;
-            text-align: center;
-        }
-        .date-week > li {
-            width: 45.29px;
-            padding: 10px;
-        }
-        .date-day {
-            display: flex;
-            flex-wrap: wrap;
-            border-top: 1px solid #ccc;
-            border-left: 1px solid #ccc;
-        }
-        .date-day > li {
-            width: 45.29px;
-            height: 50px;
-            border-bottom: 1px solid #ccc;
-            border-right: 1px solid #ccc;
-            padding: 10px;
-            cursor: pointer;
-        }
+<meta charset="utf-8"> 
+<title>W3Cschool教程(w3cschool.cn)</title>
+<style type="text/css">
+	* {margin: 0;padding: 0;box-sizing: border-box;}
+	li {list-style: none;}
+	.game-box {
+		width: 301px;
+		height: 300px;
+		margin: 60px auto;
+		border-top: 1px solid#ccc;
+		border-left: 1px solid #ccc;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.imgs-box {
+		width: 900px;
+		display: flex;
+		border-top: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+		margin: 0 auto;
+	}
+	.game-box > li,
+	.imgs-box >li {
+		width: 100px;
+		height: 100px;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	.imgs-box img {width: 100px;}
+	.target {
+		position: absolute;
+	}
+</style>
 
-    </style>
-
+</head>
 <body>
-    <div class="date-box">
-        <div class="date-hd">
-            <p id="nowDay">2019-11-27</p>
-            <div>
-                <button id="prev">上一个月</button>
-                <button id="now">今天</button>
-                <button id="next">下一个月</button>
-            </div>
-        </div>
-        <ul class="date-week">
-            <li>一</li>
-            <li>二</li>
-            <li>三</li>
-            <li>四</li>
-            <li>五</li>
-            <li>六</li>
-            <li>日</li>
-        </ul>
-        <ul class="date-day" id="day"></ul>
-    </div>
+	<img class="target" src="./images/s.jpg" alt="">
+	<ul class="game-box">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<ul class="imgs-box">
+		<li><img src="./images/1.jpg" draggable="true" id="img1" alt=""></li>
+		<li><img src="./images/3.jpg" draggable="true" id="img3" alt=""></li>
+		<li><img src="./images/2.jpg" draggable="true" id="img2" alt=""></li>
+		<li><img src="./images/4.jpg" draggable="true" id="img4" alt=""></li>
+		<li><img src="./images/6.jpg" draggable="true" id="img6" alt=""></li>
+		<li><img src="./images/5.jpg" draggable="true" id="img5" alt=""></li>
+		<li><img src="./images/9.jpg" draggable="true" id="img9" alt=""></li>
+		<li><img src="./images/7.jpg" draggable="true" id="img7" alt=""></li>
+		<li><img src="./images/8.jpg" draggable="true" id="img8" alt=""></li>
+	</ul>
 
-    <script>
-        let date = new Date();
-        let dayTime = 1000*60*60*24; // 一天的毫秒数
-        let domPrev = document.querySelector("#prev");
-        let domNext = document.querySelector("#next");
-        let domNow = document.querySelector("#now");
-        changeDate();
+<script>
+	let imgCon = document.querySelectorAll(".game-box li");
+	let imgCon2 = document.querySelectorAll(".imgs-box li");
+	let imgSource = document.querySelectorAll(".imgs-box img");
 
-        domPrev.onclick = function() {
-            changeDate("-");
-        }
-        domNext.onclick = function() {
-            changeDate("+");
-        }
-        domNow.onclick = function() {
-            date = new Date();
-            changeDate();
-        }
-        function changeDate(step="") {
-            let monthTime = dayTime*30;
-            if (step === "+") {
-                date.setTime(date.getTime()+monthTime);
-            } else if (step === "-") {
-                date.setTime(date.getTime()-monthTime);
-            }
-            let dayText = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
-            createDate(dayText);
-        }
-
-        function createDate(dayText) {
-            let domDay = document.querySelector("#day");
-            let domNowDay = document.querySelector("#nowDay");
-            let nowDate = new Date(dayText);
-            let dayArr = dayText.split("/");
-            let n = new Date();
-            let weekDay = 0;
-            let beginMonth;
-            domDay.innerHTML = "";
-            domNowDay.innerHTML = `${dayArr[0]}年${dayArr[1]}月`;
-
-            // 创建上一个月的天数
-            nowDate.setTime(nowDate.getTime()-dayTime*(nowDate.getDate()-1)); // 回溯到本月1号
-            weekDay = nowDate.getDay()-1;
-            if (weekDay === -1) { // 周日
-                weekDay = 6;
-            }
-            nowDate.setTime(nowDate.getTime()-dayTime*weekDay); // 回溯到本月1号到上月周日时刻
-            beginMonth = nowDate.getMonth();
-            for (let i=weekDay;i--;) {
-                let li = document.createElement("li");
-                li.className = "not";
-                if (nowDate.getMonth() === beginMonth) {
-                    let localDayText =  `${nowDate.getFullYear()}/${nowDate.getMonth()+1}/${nowDate.getDate()}`;
-                    li.innerHTML = nowDate.getDate();
-                    domDay.appendChild(li);
-                    li.onclick = function() {
-                        createDate(localDayText);
-                    }
-                    nowDate.setTime(nowDate.getTime()+dayTime);
-                } else {
-                    break;
-                } 
-            }
-
-            // 创建当月的天数
-            nowDate.setTime(nowDate.getTime()-dayTime*(nowDate.getDate()-1)); // 初始化当月第一天
-            beginMonth = nowDate.getMonth();
-            while (true) {
-                    let li = document.createElement("li");
-                    li.className = "";
-                    if (nowDate.getDate() === n.getDate() && nowDate.getMonth()===n.getMonth()&& nowDate.getFullYear()===n.getFullYear()) {
-                        li.className += " now";
-                    }
-                    if (nowDate.getMonth() === beginMonth) {
-                        li.innerHTML = nowDate.getDate();
-                        domDay.appendChild(li);
-                        nowDate.setTime(nowDate.getTime()+dayTime);
-                    } else {
-                        break;
-                    }
-                } 
-            
-            // 创建下一个月的天数
-            nowDate.setTime(nowDate.getTime()-dayTime);
-            if (nowDate.getDay() !== 0) { // 周日为0
-                for (let i=7-nowDate.getDay(); i--;) {
-                    nowDate.setTime(nowDate.getTime()+dayTime); 
-                    let li = document.createElement("li");
-                    let localDayText =  `${nowDate.getFullYear()}/${nowDate.getMonth()+1}/${nowDate.getDate()}`;
-                    li.className = "not";
-                    li.innerHTML = nowDate.getDate();
-                    domDay.appendChild(li);
-                    li.onclick = function() {
-                        createDate(localDayText);
-                    }
-                }
-            }
-        }
-
-    </script>
+	for (let i=0; i<9; i++) {
+		imgCon[i].addEventListener("drop",function(e){
+			drop(e);
+		});
+		imgCon2[i].addEventListener("drop",function(e){
+			drop(e);
+		});
+		imgCon[i].addEventListener("dragover",function(e) {
+			e.preventDefault();	
+		});
+		imgCon2[i].addEventListener("dragover",function(e) {
+			e.preventDefault();	
+		})
+		imgSource[i].addEventListener("dragstart",function(e) {
+			e.dataTransfer.setData("Text",e.target.id);
+		});
+		
+	}
+	
+	function drop(e) {
+		e.preventDefault();
+		let data=e.dataTransfer.getData("Text");
+		let sourcetImg = document.getElementById(data);
+		let parentElement = e.target;
+		let sourceParentEle = sourcetImg.parentElement;
+		if (e.target.nodeName === "IMG") {
+			parentElement = e.target.parentElement;
+		}
+		let childImg = parentElement.querySelector("img");
+		parentElement.innerHTML = "";
+		parentElement.appendChild(sourcetImg);
+		if (childImg) {
+			sourceParentEle.appendChild(childImg);
+		}
+	}
+	</script>
 </body>
-
 </html>
