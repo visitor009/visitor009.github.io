@@ -4,103 +4,13 @@
 <meta charset="utf-8"> 
 <title>W3Cschool教程(w3cschool.cn)</title>
 <style type="text/css">
-	* {margin: 0;padding: 0;box-sizing: border-box;}
-	li {list-style: none;}
-	.game-box {
-		width: 301px;
-		height: 300px;
-		margin: 60px auto;
-		border-top: 1px solid#ccc;
-		border-left: 1px solid #ccc;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.imgs-box {
-		width: 900px;
-		display: flex;
-		border-top: 1px solid #ccc;
-		border-left: 1px solid #ccc;
-		margin: 0 auto;
-	}
-	.game-box > li,
-	.imgs-box >li {
-		width: 100px;
-		height: 100px;
-		border-right: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-	}
-	.imgs-box img {width: 100px;}
-	.target {
-		position: absolute;
-	}
+	
 </style>
 
 </head>
 <body>
-	<img class="target" src="./images/s.jpg" alt="">
-	<ul class="game-box">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>
-	<ul class="imgs-box">
-		<li><img src="./images/1.jpg" draggable="true" id="img1" alt=""></li>
-		<li><img src="./images/3.jpg" draggable="true" id="img3" alt=""></li>
-		<li><img src="./images/2.jpg" draggable="true" id="img2" alt=""></li>
-		<li><img src="./images/4.jpg" draggable="true" id="img4" alt=""></li>
-		<li><img src="./images/6.jpg" draggable="true" id="img6" alt=""></li>
-		<li><img src="./images/5.jpg" draggable="true" id="img5" alt=""></li>
-		<li><img src="./images/9.jpg" draggable="true" id="img9" alt=""></li>
-		<li><img src="./images/7.jpg" draggable="true" id="img7" alt=""></li>
-		<li><img src="./images/8.jpg" draggable="true" id="img8" alt=""></li>
-	</ul>
+	https://service.dcloud.net.cn/build/download/0450ee40-9004-11ea-beb9-338e8f6698bb 
 
-<script>
-	let imgCon = document.querySelectorAll(".game-box li");
-	let imgCon2 = document.querySelectorAll(".imgs-box li");
-	let imgSource = document.querySelectorAll(".imgs-box img");
 
-	for (let i=0; i<9; i++) {
-		imgCon[i].addEventListener("drop",function(e){
-			drop(e);
-		});
-		imgCon2[i].addEventListener("drop",function(e){
-			drop(e);
-		});
-		imgCon[i].addEventListener("dragover",function(e) {
-			e.preventDefault();	
-		});
-		imgCon2[i].addEventListener("dragover",function(e) {
-			e.preventDefault();	
-		})
-		imgSource[i].addEventListener("dragstart",function(e) {
-			e.dataTransfer.setData("Text",e.target.id);
-		});
-		
-	}
-	
-	function drop(e) {
-		e.preventDefault();
-		let data=e.dataTransfer.getData("Text");
-		let sourcetImg = document.getElementById(data);
-		let parentElement = e.target;
-		let sourceParentEle = sourcetImg.parentElement;
-		if (e.target.nodeName === "IMG") {
-			parentElement = e.target.parentElement;
-		}
-		let childImg = parentElement.querySelector("img");
-		parentElement.innerHTML = "";
-		parentElement.appendChild(sourcetImg);
-		if (childImg) {
-			sourceParentEle.appendChild(childImg);
-		}
-	}
-	</script>
 </body>
 </html>
